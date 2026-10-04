@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunrise Studios | Linktree</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        sunrise: {
+                            orange: '#FF5E62',
+                            yellow: '#FFD166',
+                            pink: '#FF416C',
+                            purple: '#8A2387',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            overflow-x: hidden;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        /* Liquid Glassmorphism Dark Mode */
+        .dark .glass-card {
+            background: rgba(18, 15, 30, 0.65);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+
+        /* Liquid Glassmorphism Light Mode */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        }
+
+        .glass-link {
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .glass-link:hover {
+            transform: translateY(-4px) scale(1.02);
+            border-color: rgba(255, 94, 98, 0.5);
+            box-shadow: 0 20px 40px rgba(255, 94, 98, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        }
+
+        .sunrise-gradient-bg {
+            background: linear-gradient(-45deg, #8A2387, #E94057, #F27121, #FFD166);
+            background-size: 400% 400%;
+            animation: gradientShift 12s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(90px);
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.5;
+            animation: floatOrb 12s ease-in-out infinite alternate;
+        }
+
+        @keyframes floatOrb {
+            0% { transform: translateY(0px) scale(1); }
+            100% { transform: translateY(-40px) scale(1.15); }
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.05);
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: #0F0C1B;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 94, 98, 0.4);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen bg-[#F8F9FC] dark:bg-[#0F0C1B] text-gray-900 dark:text-white flex flex-col items-center justify-between py-10 px-4 selection:bg-sunrise-orange selection:text-white">
+
+    <div class="orb w-96 h-96 bg-sunrise-orange top-10 left-10"></div>
+    <div class="orb w-96 h-96 bg-sunrise-purple bottom-10 right-10" style="animation-delay: -4s;"></div>
+    <div class="orb w-80 h-80 bg-sunrise-yellow top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-25" style="animation-delay: -8s;"></div>
+
+    <!-- Theme Toggle Floating Button -->
+    <div class="fixed top-6 right-6 z-50">
+        <button onclick="toggleTheme()" id="themeToggle" aria-label="Toggle Theme" 
+            class="w-11 h-11 rounded-2xl glass-card flex items-center justify-center text-sunrise-yellow hover:scale-110 transition-all shadow-lg">
+            <i id="themeIcon" class="fa-solid fa-moon text-lg"></i>
+        </button>
+    </div>
+
+    <main class="w-full max-w-md mx-auto relative z-10 my-auto flex flex-col items-center">
+        <!-- Avatar / Studio Logo -->
+        <div class="relative group mb-6">
+            <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-3xl sunrise-gradient-bg p-1 shadow-2xl transform group-hover:scale-105 transition-transform duration-300">
+                <div class="w-full h-full rounded-[22px] bg-white dark:bg-[#0F0C1B] flex items-center justify-center overflow-hidden">
+                    <img src="logo.png" alt="Sunrise Studios Logo" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/200x200/FF5E62/FFFFFF?text=☀️';">
+                </div>
+            </div>
+            <div class="absolute -bottom-1 -right-1 w-8 h-8 rounded-xl bg-sunrise-yellow flex items-center justify-center text-gray-900 shadow-lg font-bold">
+                <i class="fa-solid fa-check text-xs"></i>
+            </div>
+        </div>
+
+        <!-- Studio Title & Tagline -->
+        <h1 class="text-2xl sm:text-3xl font-black tracking-tight text-center mb-2">
+            Sunrise Studios
+        </h1>
+        <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-300 font-medium text-center mb-8 px-4">
+            Official Roblox Game Studio & Creator Hub 🌴✨
+        </p>
+
+        <div class="w-full space-y-4">
+            
+            <!-- Featured Game Link Card -->
+            <a href="https://www.roblox.com/games/126961884639348/CoconutCodys-Tower-Summer-Update" target="_blank" 
+               class="glass-card glass-link rounded-2xl p-4 flex items-center space-x-4 shadow-xl relative overflow-hidden group block">
+                <div class="absolute inset-0 bg-gradient-to-r from-sunrise-orange/10 to-sunrise-pink/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                
+                <div class="w-14 h-14 rounded-xl overflow-hidden bg-gray-200 dark:bg-gray-800 flex-shrink-0 border border-white/20 shadow-md">
+                    <img src="icon.png" alt="Coconut Cody's Tower" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/100x100/FF5E62/FFFFFF?text=Tower';">
+                </div>
+
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-center space-x-2 mb-1">
+                        <span class="px-2 py-0.5 rounded text-[10px] font-extrabold uppercase bg-sunrise-orange text-white shadow-sm">Featured</span>
+                    </div>
+                    <h2 class="text-sm sm:text-base font-extrabold truncate group-hover:text-sunrise-orange transition-colors">
+                        Coconut Cody's Tower (Summer Update)
+                    </h2>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 truncate">Play now on Roblox</p>
+                </div>
+
+                <div class="w-9 h-9 rounded-xl glass-card flex items-center justify-center flex-shrink-0 text-sunrise-orange group-hover:translate-x-1 transition-transform">
+                    <i class="fa-solid fa-arrow-right text-sm"></i>
+                </div>
+            </a>
+
+            <!-- Developer Profile Link Card -->
+            <a href="https://www.roblox.com/users/2373476087/profile#!#creations" target="_blank" 
+               class="glass-card glass-link rounded-2xl p-4 flex items-center space-x-4 shadow-xl relative overflow-hidden group block">
+                <div class="absolute inset-0 bg-gradient-to-r from-sunrise-purple/10 to-sunrise-yellow/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                
+                <div class="w-14 h-14 rounded-xl overflow-hidden bg-gradient-to-br from-sunrise-purple to-sunrise-orange p-0.5 flex-shrink-0 shadow-md">
+                    <div class="w-full h-full rounded-[10px] bg-white dark:bg-[#0F0C1B] flex items-center justify-center">
+                        <i class="fa-solid fa-user-gear text-sunrise-orange text-xl"></i>
+                    </div>
+                </div>
+
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-center space-x-2 mb-1">
+                        <span class="px-2 py-0.5 rounded text-[10px] font-extrabold uppercase bg-sunrise-purple text-white shadow-sm">Developer</span>
+                    </div>
+                    <h2 class="text-sm sm:text-base font-extrabold truncate group-hover:text-sunrise-orange transition-colors">
+                        Developer Profile & Creations
+                    </h2>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 truncate">Explore all Roblox creations</p>
+                </div>
+
+                <div class="w-9 h-9 rounded-xl glass-card flex items-center justify-center flex-shrink-0 text-sunrise-orange group-hover:translate-x-1 transition-transform">
+                    <i class="fa-solid fa-arrow-right text-sm"></i>
+                </div>
+            </a>
+
+        </div>
+
+        <!-- Social Badges / Footer Links -->
+        <div class="flex items-center space-x-4 mt-8">
+            <a href="https://www.roblox.com/games/126961884639348/CoconutCodys-Tower-Summer-Update" target="_blank" 
+               class="w-12 h-12 rounded-2xl glass-card flex items-center justify-center text-gray-700 dark:text-gray-300 hover:text-sunrise-orange hover:scale-110 transition-all shadow-md" title="Roblox Game">
+                <i class="fa-solid fa-gamepad text-lg"></i>
+            </a>
+            <a href="https://www.roblox.com/users/2373476087/profile#!#creations" target="_blank" 
+               class="w-12 h-12 rounded-2xl glass-card flex items-center justify-center text-gray-700 dark:text-gray-300 hover:text-sunrise-orange hover:scale-110 transition-all shadow-md" title="Creator Profile">
+                <i class="fa-solid fa-user text-lg"></i>
+            </a>
+        </div>
+    </main>
+
+    <footer class="w-full text-center py-4 relative z-10 text-xs text-gray-500 dark:text-gray-400 font-medium">
+        &copy; 2026 Sunrise Studios. All rights reserved.
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeIcon = document.getElementById('themeIcon');
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const themeIcon = document.getElementById('themeIcon');
+            if (document.documentElement.classList.contains('dark')) {
+                themeIcon.className = "fa-solid fa-sun text-lg";
+            } else {
+                themeIcon.className = "fa-solid fa-moon text-lg";
+            }
+        });
+    </script>
+</body>
+</html>
